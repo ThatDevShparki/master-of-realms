@@ -22,9 +22,7 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResourceURLs"
-                }
+                "schema": { "$ref": "#/components/schemas/ResourceURLs" }
               }
             }
           }
@@ -86,6 +84,51 @@
           }
         }
       }
+    },
+    "/api/conditions/{condition}": {
+      "get": {
+        "summary": "Get condition details",
+        "operationId": "get_condition_details",
+        "description": "Retrieve details for a specific condition that could affect a play or non-player character\n",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "condition",
+            "required": true,
+            "description": "The condition to retrieve details for",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "blinded",
+                "charmed",
+                "deafened",
+                "exhaustion",
+                "frightened",
+                "grappled",
+                "incapacitated",
+                "invisible",
+                "paralyzed",
+                "petrified",
+                "poisoned",
+                "prone",
+                "restrained",
+                "stunned",
+                "unconscious"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Conditions" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -124,6 +167,29 @@
                 }
               }
             }
+          }
+        }
+      },
+      "Conditions": {
+        "type": "object",
+        "title": "Conditions",
+        "properties": {
+          "index": {
+            "type": "string",
+            "description": "The index of the condition"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the condition"
+          },
+          "url": {
+            "type": "string",
+            "description": "The url of the condition"
+          },
+          "desc": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "The description of the condition"
           }
         }
       }
