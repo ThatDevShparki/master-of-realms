@@ -30,6 +30,62 @@
           }
         }
       }
+    },
+    "/api/{resource}": {
+      "get": {
+        "summary": "Get list of all available resources for an endpoint",
+        "operationId": "get_all_resource_urls_for_endpoint",
+        "description": "Retrieve all available resources for an endpoint",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "resource",
+            "required": true,
+            "description": "The endpoint to retrieve resources for",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ability-scores",
+                "alignments",
+                "backgrounds",
+                "classes",
+                "conditions",
+                "damage-types",
+                "equipment",
+                "equipment-categories",
+                "feats",
+                "features",
+                "languages",
+                "magic-items",
+                "magic-schools",
+                "monsters",
+                "proficiencies",
+                "races",
+                "rule-sections",
+                "rules",
+                "skills",
+                "spells",
+                "subclasses",
+                "subraces",
+                "traits",
+                "weapon-properties"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceEndpointURLs"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -39,6 +95,37 @@
         "title": "ResourceURLs",
         "properties": {},
         "additionalProperties": { "type": "string" }
+      },
+      "ResourceEndpointURLs": {
+        "type": "object",
+        "title": "ResourceEndpointURLs",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of resources available for this endpoint"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "index": {
+                  "type": "string",
+                  "description": "The index of the resource"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the resource"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The url of the resource"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "securitySchemes": {}
