@@ -1,0 +1,72 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DnD 5e API",
+    "description": "Retrieves information available in the Dungeons and Dragons open players manual",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://www.dnd5eapi.co",
+      "description": "The DnD 5e API server"
+    }
+  ],
+  "paths": {
+    "/api": {
+      "get": {
+        "summary": "Get all resource urls",
+        "operationId": "get_all_resource_urls",
+        "description": "Retrieve all available resource urls",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceURLs"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResourceURLs": {
+        "type": "object",
+        "title": "ResourceURLs",
+        "properties": {},
+        "additionalProperties": { "type": "string" },
+        "example": {
+          "ability-scores": "/api/ability-scores",
+          "alignments": "/api/alignments",
+          "backgrounds": "/api/backgrounds",
+          "classes": "/api/classes",
+          "conditions": "/api/conditions",
+          "damage-types": "/api/damage-types",
+          "equipment": "/api/equipment",
+          "equipment-categories": "/api/equipment-categories",
+          "feats": "/api/feats",
+          "features": "/api/features",
+          "languages": "/api/languages",
+          "magic-items": "/api/magic-items",
+          "magic-schools": "/api/magic-schools",
+          "monsters": "/api/monsters",
+          "proficiencies": "/api/proficiencies",
+          "races": "/api/races",
+          "rule-sections": "/api/rule-sections",
+          "rules": "/api/rules",
+          "skills": "/api/skills",
+          "spells": "/api/spells",
+          "subclasses": "/api/subclasses",
+          "subraces": "/api/subraces",
+          "traits": "/api/traits",
+          "weapon-properties": "/api/weapon-properties"
+        }
+      }
+    },
+    "securitySchemes": {}
+  }
+}
